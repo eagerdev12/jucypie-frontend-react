@@ -1,0 +1,77 @@
+import React from 'react';
+import styled from 'styled-components';
+import { RightOutlined } from '@ant-design/icons';
+import { Row, Typography, Col, Tag } from 'antd';
+
+const ShippingCard = ({ owner, address, isPrimary, onEdit }) => {
+  return (
+    <CardWrapper>
+      <Col>
+        <LocationImage src='/images/location.svg' />
+      </Col>
+      <ShippingAddressWrapper>
+        <Row>
+          <OwnerName>{owner}</OwnerName>
+        </Row>
+        <Row>
+          <AddressLabel>{address}</AddressLabel>
+        </Row>
+      </ShippingAddressWrapper>
+      <Col>
+        <Row align='middle'>
+          {isPrimary && <RoundedTag color='success'>Primary</RoundedTag>}
+          <NavigationLink onClick={onEdit}>
+            <RightOutlined />
+          </NavigationLink>
+        </Row>
+      </Col>
+    </CardWrapper>
+  );
+};
+
+const CardWrapper = styled(Row)`
+  width: 100%;
+  margin-bottom: 30px;
+`;
+
+const ShippingAddressWrapper = styled(Col)`
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
+const OwnerName = styled(Typography.Text)`
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 17px;
+  padding-bottom: 5px;
+`;
+
+const AddressLabel = styled(Typography.Text)`
+  font-size: 15px;
+  line-height: 17px;
+  color: rgba(64, 73, 80, 0.7);
+`;
+
+const LocationImage = styled.img`
+  height: 24px;
+  object-fit: cover;
+`;
+
+const NavigationLink = styled.a`
+  padding: 5px;
+`;
+
+const RoundedTag = styled(Tag)`
+  width: 60px;
+  height: 22px;
+  font-size: 13px;
+  line-height: 14px;
+  border-radius: 5px;
+  margin-right: 5px;
+  align-items: center;
+  display: flex;
+`;
+
+export default ShippingCard;
